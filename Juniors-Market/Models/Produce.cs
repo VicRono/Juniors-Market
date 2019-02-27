@@ -14,6 +14,7 @@ namespace Juniors_Market.Models
         public string Fruit { get; set; }
         public string Vegetable { get; set; }
         public decimal Price { get; set; }
+        public int Quantity { get; set; }
 
         [ForeignKey("Farmer")]
         public int FarmerId { get; set; }

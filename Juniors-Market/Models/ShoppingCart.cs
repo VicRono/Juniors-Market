@@ -16,8 +16,6 @@ namespace Juniors_Market.Models
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
-        [ForeignKey("Produce")]
-        public int ProduceId { get; set; }
-        public Produce Produce { get; set; }
+        public List<Produce> Produces { get; set; }
     }
 }
