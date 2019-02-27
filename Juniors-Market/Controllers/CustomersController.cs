@@ -57,7 +57,7 @@ namespace Juniors_Market.Controllers
             context.Customer.Add(customer);
             context.SaveChanges();
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Customers/Edit/5
@@ -80,7 +80,7 @@ namespace Juniors_Market.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,CustomerName,Address,City,State,Zip,AspUserId")] Customer customer)
+        public ActionResult Edit([Bind(Include = "CustomerName,Address,City,State,Zip")] Customer customer)
         {
             if (ModelState.IsValid)
             {
