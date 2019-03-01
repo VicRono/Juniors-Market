@@ -181,7 +181,7 @@ namespace Juniors_Market.Controllers
                     }                     
                     else if (user.UserRole == "Farmer")
                     {
-                        return RedirectToAction("Create", "Farmer");
+                        return RedirectToAction("Create", "Farmers");
                     }
                     else
                     {

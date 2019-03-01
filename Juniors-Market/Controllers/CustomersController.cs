@@ -4,10 +4,13 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Juniors_Market.Models;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json.Linq;
 
 namespace Juniors_Market.Controllers
 {
@@ -23,6 +26,26 @@ namespace Juniors_Market.Controllers
         {
             return View();
         }
+
+        //[HttpGet]
+        //public async Task<List<MarketSearch>> SearchFarmersMarkets(string Zip)
+        //{
+        //    List<MarketSearch> marketSearch = new List<MarketSearch>();
+        //    //get user id, then use user id, find customer. then get zip code, get reequest to api with zipcode
+        //    //var aspUserId = User.Identity.GetUserId();
+        //    //var newGuy = context.Customer.Where(c => c.AspUserId == aspUserId).SingleOrDefault();
+
+        //    using (var client = new HttpClient())
+        //    {
+        //        client.BaseAddress = new Uri("http://search.ams.usda.gov/FarmersMarkets/v1/data.svc?wsdl");
+        //        var response = await client.GetAsync($"/zipSearch?zip" +Zip);
+        //        response.EnsureSuccessStatusCode();
+
+        //        var stringResult = await response.Content.ReadAsStringAsync();
+        //        var json = JObject.Parse(stringResult);
+        //    }
+        //    return marketSearch;
+        //}
 
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
@@ -42,8 +65,7 @@ namespace Juniors_Market.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            Customer customer = new Customer();
-            return View(customer);
+            return View();
         }
 
         // POST: Customers/Create
@@ -53,11 +75,21 @@ namespace Juniors_Market.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CustomerName,Address,City,State,Zip")] Customer customer)
         {
-            customer.AspUserId = User.Identity.GetUserId();
-            context.Customer.Add(customer);
+            Customer newGuy = new Customer();
+            newGuy.CustomerName = customer.CustomerName;
+            newGuy.Address = customer.Address;
+            newGuy.City = customer.City;
+            newGuy.State = customer.State;
+            newGuy.Zip = customer.Zip;
+            newGuy.AspUserId = customer.AspUserId;
+
+            context.Customer.Add(newGuy);
             context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
+
+
+            //return RedirectToAction("SearchFarmersMarkets", "Customers", newGuy.Zip);
         }
 
         // GET: Customers/Edit/5
