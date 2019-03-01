@@ -9,5 +9,13 @@ namespace Juniors_Market.Models
     {
         public string Id { get; set; }
         public string Marketname { get; set; }
+
+
+    }
+
+    public class MarketSearchResult 
+    {
+        public List<MarketSearch> Results { get; set; }
+
     }
 }

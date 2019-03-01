@@ -175,6 +175,8 @@ namespace Juniors_Market.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     if (user.UserRole == "Customer")
                     {
                         return RedirectToAction("Create", "Customers");
