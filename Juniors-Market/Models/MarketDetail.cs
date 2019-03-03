@@ -12,4 +12,9 @@ namespace Juniors_Market.Models
         public string Products { get; set; }
         public string Schedule { get; set; }
     }
+
+    public class MarketDetails
+    {
+        public MarketDetail marketdetails { get; set; }
+    }
 }

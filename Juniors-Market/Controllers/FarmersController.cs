@@ -56,17 +56,9 @@ namespace Juniors_Market.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MarketName,Address,City,State,Zip")] Farmer farmer)
         {
-            Farmer newFarmer = new Farmer();
-            newFarmer.MarketName = farmer.MarketName;
-            newFarmer.Address = farmer.Address;
-            newFarmer.City = farmer.City;
-            newFarmer.State = farmer.State;
-            newFarmer.Zip = farmer.Zip;
-            newFarmer.AspUserId = farmer.AspUserId;
-
-            context.Farmer.Add(newFarmer);
+            farmer.AspUserId = User.Identity.GetUserId();
+            context.Farmer.Add(farmer);
             context.SaveChanges();
-
             return RedirectToAction("Index", "Home");
         }
 

@@ -5,21 +5,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Local Farmers Markets near you:</h2>
 
 
+<div>
+
+    <iframe height="800"
+            width="800"
+            frameborder="0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBe_Z-fhGvrQfjvIH5DNtwC4p3EwAwdSKk&q=Eiffel+Tower,Paris+Francefarmers_markets+near+@Model.Select(z=>z.Marketname)&zoom=14"></iframe>
+</div>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Marketname)
+
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Marketname)
+            
         </td>
         <td>
            
@@ -27,5 +35,5 @@
            
     </tr>
 }
-
+ 
 </table>
