@@ -202,6 +202,11 @@
     <Compile Include="Migrations\201903011718300_MarketSearchAndDetails.Designer.cs">
       <DependentUpon>201903011718300_MarketSearchAndDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903051955565_market\search\changed.cs" />
+    <Compile Include="Migrations\201903051959017_marketstringId.cs" />
+    <Compile Include="Migrations\201903051959017_marketstringId.Designer.cs">
+      <DependentUpon>201903051959017_marketstringId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -314,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903011718300_MarketSearchAndDetails.resx">
       <DependentUpon>201903011718300_MarketSearchAndDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903051959017_marketstringId.resx">
+      <DependentUpon>201903051959017_marketstringId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

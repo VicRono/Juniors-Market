@@ -35,27 +35,48 @@ namespace Juniors_Market.Controllers
             var aspUserId = User.Identity.GetUserId();
             var customer = context.Customer.Where(c => c.AspUserId == aspUserId).SingleOrDefault();
 
-            MarketSearchResult marketResult = null;
+            List<MarketSearch> marketResult = new List<MarketSearch>();
             using (var client = new HttpClient())
             {
                 var url = @"http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=";
                 url = url + customer.Zip;
                 var response = await client.GetAsync(url);
 
+                
                 if (response.IsSuccessStatusCode)
                 {
-                    marketResult = await response.Content.ReadAsAsync<MarketSearchResult>();
+                    var markets = await response.Content.ReadAsStringAsync();
+                    var json = JObject.Parse(markets);
+                    var j_marketId = json["results"][0]["id"];
+                    var j_marketName = json["results"][0]["marketname"];
+                    var marketId = j_marketId.ToObject<string>();
+                    var marketName = j_marketName.ToObject<string>();
+
+                    for (int i = 0; i < json["results"].Count(); i++)
+                    {
+                        MarketSearch marketlist = new MarketSearch();
+
+                        marketlist.Id = json["results"][i]["id"].ToObject<string>();
+                        var splitMarketname = json["results"][i]["marketname"].ToObject<string>();
+
+                        
+
+                        marketlist.Marketname = splitMarketname;
+                        marketResult.Add(marketlist);
+                    }
+
+                    //return JsonConvert.DeserializeObject<List<MarketSearch>>(market);
+                    //foreach (var item in marketList)
+                    //{
+                    //    Console.WriteLine("id: {0}, marketname: {1}", item.Id, item.Marketname);
+                    //}
+
                 }
+                return marketResult;
             }
-
-            if(marketResult != null)
-            {
-                return marketResult.Results;
-            }
-
-            throw new Exception("Error in market search!");
-
+            //throw new Exception("Error in market search!");
         }
+
 
         // GET: Customers/Details/5
         public ActionResult Details(int? id)

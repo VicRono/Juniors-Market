@@ -5,35 +5,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Local Farmers Markets near you:</h2>
-
-
-<div>
-
-    <iframe height="800"
-            width="800"
-            frameborder="0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBe_Z-fhGvrQfjvIH5DNtwC4p3EwAwdSKk&q=Eiffel+Tower,Paris+Francefarmers_markets+near+@Model.Select(z=>z.Marketname)&zoom=14"></iframe>
+<h2>
+    Local Farmers Markets near you:
+</h2>
+<div class="col-md-offset-6">
+    <p>
+        @Html.ActionLink("My Archived Trips", "Index")|
+        @Html.ActionLink("My Account", "Index")
+    </p>
 </div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Marketname)
 
-        </th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Marketname)
+<style>
+    tr:nth-child(even){background-color: #f2f2f2;}
+</style>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Marketname)
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marketname)
+
+            </td>
             
-        </td>
-        <td>
-           
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-           
-    </tr>
-}
- 
-</table>
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @Html.ActionLink("Archive", "Details", new { id = item.Id })
+                @Html.ActionLink("Review", "Details", new { id = item.Id })
+            </td>
+
+        </tr>
+        }
+
+    </table>

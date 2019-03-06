@@ -10,6 +10,8 @@ namespace Juniors_Market.Models
     {
         [Key]
         public int FarmerId { get; set; }
+
+        [Display(Name = "Market Name")]
         public string MarketName { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
