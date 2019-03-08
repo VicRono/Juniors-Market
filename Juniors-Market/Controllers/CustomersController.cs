@@ -72,14 +72,12 @@ namespace Juniors_Market.Controllers
         public async Task<List<MarketDetails>> GetMarketDetails(string id)
         {
             //pass the id. Get request to api to get market details
-            //var stringId = context.MarketSearch.Where(i => i.Id == id).SingleOrDefault();
-            //var details = context.MarketDetail.Where(I => I.MarketId == stringId.Id).FirstOrDefault();
-            var stringId = id;
+            //var stringId = id;
             List<MarketDetails> marketDetails = new List<MarketDetails>();
             using (var client = new HttpClient())
             {
                 var url = @"http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=";
-                url = url + stringId;
+                url = url + id;
                 var response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
