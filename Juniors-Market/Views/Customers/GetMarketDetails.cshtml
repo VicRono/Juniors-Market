@@ -1,0 +1,58 @@
+﻿@model Juniors_Market.Models.MarketDetail
+
+@{
+    ViewBag.Title = "GetMarketDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetMarketDetails</h2>
+
+<div>
+    <h4>MarketDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MarketSearch.Marketname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarketSearch.Marketname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoogleLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoogleLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Products)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Products)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Schedule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Schedule)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

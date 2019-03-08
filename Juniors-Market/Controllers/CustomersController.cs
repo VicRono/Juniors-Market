@@ -69,7 +69,7 @@ namespace Juniors_Market.Controllers
             }
         }
 
-        public async Task<MarketDetail> GetMarketDetails(string id)
+        public async Task<ActionResult> GetMarketDetails(string id)
         {
             //pass the id. Get request to api to get market details
             MarketDetail marketDetails = new MarketDetail();
@@ -95,16 +95,8 @@ namespace Juniors_Market.Controllers
                     context.SaveChanges(); 
                 }
             }
-            return marketDetails;
+            return View(marketDetails);
         }
-
-        public async Task<ActionResult> DisplayMarketDetails()
-        {
-            var farmerMarketDetails = await GetMarketDetails();
-            return View(farmerMarketDetails);
-        }
-
-
 
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
