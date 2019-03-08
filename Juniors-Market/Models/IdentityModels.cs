@@ -32,11 +32,13 @@ namespace Juniors_Market.Models
         {
             return new ApplicationDbContext();
         }
-        public DbSet<Customer> Customer { get; set; }
-        public DbSet<Farmer> Farmer { get; set; }
-        public DbSet<Produce> Produce { get; set; }
-        public DbSet<ShoppingCart> ShoppingCart { get; set; }
+        public DbSet<Customer> Customer{ get; set; }
+        public DbSet<Farmer> Farmer{ get; set; }
+        public DbSet<Produce> Produces { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<MarketSearch> MarketSearches { get; set; }
+        public DbSet<MarketDetail> MarketDetails { get; set; }
 
-        public System.Data.Entity.DbSet<Juniors_Market.Models.MarketSearch> MarketSearches { get; set; }
+       
     }
 }

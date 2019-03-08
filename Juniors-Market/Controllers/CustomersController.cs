@@ -25,13 +25,12 @@ namespace Juniors_Market.Controllers
         // GET: Customers
         public async Task<ActionResult> Index()
         {
-            var a = SearchFarmersMarkets();
-            return View(await a);
+            var alistofmarkets = await SearchFarmersMarkets();
+            return View(alistofmarkets);
         }
 
         public async Task<List<MarketSearch>> SearchFarmersMarkets()
         {
-            //get user id, then use user id, find customer.then get zip code, get reequest to api with zipcode
             var aspUserId = User.Identity.GetUserId();
             var customer = context.Customer.Where(c => c.AspUserId == aspUserId).SingleOrDefault();
 
@@ -42,7 +41,7 @@ namespace Juniors_Market.Controllers
                 url = url + customer.Zip;
                 var response = await client.GetAsync(url);
 
-                
+
                 if (response.IsSuccessStatusCode)
                 {
                     var markets = await response.Content.ReadAsStringAsync();
@@ -59,22 +58,42 @@ namespace Juniors_Market.Controllers
                         marketlist.Id = json["results"][i]["id"].ToObject<string>();
                         var splitMarketname = json["results"][i]["marketname"].ToObject<string>();
 
-                        
+
 
                         marketlist.Marketname = splitMarketname;
                         marketResult.Add(marketlist);
+                        context.SaveChanges();
                     }
-
-                    //return JsonConvert.DeserializeObject<List<MarketSearch>>(market);
-                    //foreach (var item in marketList)
-                    //{
-                    //    Console.WriteLine("id: {0}, marketname: {1}", item.Id, item.Marketname);
-                    //}
-
                 }
                 return marketResult;
             }
-            //throw new Exception("Error in market search!");
+        }
+
+        public async Task<List<MarketDetails>> GetMarketDetails(string id)
+        {
+            //check to see if id is similar to actual
+            //pass the id. Get request to api to get market details
+            var market = context.MarketSearches.Where(i => i.Id == id).SingleOrDefault();
+            var details = context.MarketDetails.Select(I => I.marketId == market.Id).FirstOrDefault();
+            List<MarketDetails> marketDetails = new List<MarketDetails>();
+            if (id != null)
+            {
+                using (var client = new HttpClient())
+                {
+                    var url = @"http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=";
+                    url = url + market.Id;
+                    var response = await client.GetAsync(url);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var detail = await response.Content.ReadAsStringAsync();
+                    }
+
+                }
+                
+            }
+            return marketDetails;
+
         }
 
 

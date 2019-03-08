@@ -8,6 +8,7 @@ namespace Juniors_Market.Models
 {
     public class MarketSearch
     {
+        [Key]
         public string Id { get; set; }
         [Display(Name = "Market Name")]
         public string Marketname { get; set; }

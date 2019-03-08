@@ -207,6 +207,14 @@
     <Compile Include="Migrations\201903051959017_marketstringId.Designer.cs">
       <DependentUpon>201903051959017_marketstringId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903072137400_list+ToMarketDetail.cs" />
+    <Compile Include="Migrations\201903072137400_list+ToMarketDetail.Designer.cs">
+      <DependentUpon>201903072137400_list+ToMarketDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903072253344_detail.cs" />
+    <Compile Include="Migrations\201903072253344_detail.Designer.cs">
+      <DependentUpon>201903072253344_detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -322,6 +330,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903051959017_marketstringId.resx">
       <DependentUpon>201903051959017_marketstringId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903072137400_list+ToMarketDetail.resx">
+      <DependentUpon>201903072137400_list+ToMarketDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903072253344_detail.resx">
+      <DependentUpon>201903072253344_detail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
