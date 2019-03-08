@@ -13,7 +13,7 @@ namespace Juniors_Market.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201903081731146_initial"; }
+            get { return "201903081803057_initial"; }
         }
         
         string IMigrationMetadata.Source

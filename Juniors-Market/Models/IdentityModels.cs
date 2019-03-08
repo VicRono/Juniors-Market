@@ -34,10 +34,10 @@ namespace Juniors_Market.Models
         }
         public DbSet<Customer> Customer{ get; set; }
         public DbSet<Farmer> Farmer{ get; set; }
-        public DbSet<Produce> Produces { get; set; }
-        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-        public DbSet<MarketSearch> MarketSearches { get; set; }
-        public DbSet<MarketDetail> MarketDetails { get; set; }
+        public DbSet<Produce> Produce { get; set; }
+        public DbSet<ShoppingCart> ShoppingCart { get; set; }
+        public DbSet<MarketSearch> MarketSearch { get; set; }
+        public DbSet<MarketDetail> MarketDetail { get; set; }
 
        
     }
