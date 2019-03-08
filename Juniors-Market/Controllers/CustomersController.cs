@@ -74,7 +74,7 @@ namespace Juniors_Market.Controllers
             //check to see if id is similar to actual
             //pass the id. Get request to api to get market details
             var market = context.MarketSearches.Where(i => i.Id == id).SingleOrDefault();
-            var details = context.MarketDetails.Select(I => I.marketId == market.Id).FirstOrDefault();
+            var details = context.MarketDetails.Select(I => I.MarketId == market.Id).FirstOrDefault();
             List<MarketDetails> marketDetails = new List<MarketDetails>();
             if (id != null)
             {

@@ -186,34 +186,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902222154370_Initial Migration.cs" />
-    <Compile Include="Migrations\201902222154370_Initial Migration.Designer.cs">
-      <DependentUpon>201902222154370_Initial Migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902251622592_UserRoles.cs" />
-    <Compile Include="Migrations\201902251622592_UserRoles.Designer.cs">
-      <DependentUpon>201902251622592_UserRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902251914567_IdnetityModel changed.cs" />
-    <Compile Include="Migrations\201902251914567_IdnetityModel changed.Designer.cs">
-      <DependentUpon>201902251914567_IdnetityModel changed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903011718300_MarketSearchAndDetails.cs" />
-    <Compile Include="Migrations\201903011718300_MarketSearchAndDetails.Designer.cs">
-      <DependentUpon>201903011718300_MarketSearchAndDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903051955565_market\search\changed.cs" />
-    <Compile Include="Migrations\201903051959017_marketstringId.cs" />
-    <Compile Include="Migrations\201903051959017_marketstringId.Designer.cs">
-      <DependentUpon>201903051959017_marketstringId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903072137400_list+ToMarketDetail.cs" />
-    <Compile Include="Migrations\201903072137400_list+ToMarketDetail.Designer.cs">
-      <DependentUpon>201903072137400_list+ToMarketDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903072253344_detail.cs" />
-    <Compile Include="Migrations\201903072253344_detail.Designer.cs">
-      <DependentUpon>201903072253344_detail.cs</DependentUpon>
+    <Compile Include="Migrations\201903081731146_initial.cs" />
+    <Compile Include="Migrations\201903081731146_initial.Designer.cs">
+      <DependentUpon>201903081731146_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -316,30 +291,12 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902222154370_Initial Migration.resx">
-      <DependentUpon>201902222154370_Initial Migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902251622592_UserRoles.resx">
-      <DependentUpon>201902251622592_UserRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902251914567_IdnetityModel changed.resx">
-      <DependentUpon>201902251914567_IdnetityModel changed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903011718300_MarketSearchAndDetails.resx">
-      <DependentUpon>201903011718300_MarketSearchAndDetails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903051959017_marketstringId.resx">
-      <DependentUpon>201903051959017_marketstringId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903072137400_list+ToMarketDetail.resx">
-      <DependentUpon>201903072137400_list+ToMarketDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903072253344_detail.resx">
-      <DependentUpon>201903072253344_detail.cs</DependentUpon>
-    </EmbeddedResource>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <EmbeddedResource Include="Migrations\201903081731146_initial.resx">
+      <DependentUpon>201903081731146_initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
