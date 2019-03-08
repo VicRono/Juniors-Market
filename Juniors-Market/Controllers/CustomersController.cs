@@ -69,11 +69,10 @@ namespace Juniors_Market.Controllers
             }
         }
 
-        public async Task<List<MarketDetails>> GetMarketDetails(string id)
+        public async Task<MarketDetail> GetMarketDetails(string id)
         {
             //pass the id. Get request to api to get market details
-            //var stringId = id;
-            List<MarketDetails> marketDetails = new List<MarketDetails>();
+            MarketDetail marketDetails = new MarketDetail();
             using (var client = new HttpClient())
             {
                 var url = @"http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=";
@@ -82,12 +81,29 @@ namespace Juniors_Market.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var detail = await response.Content.ReadAsStringAsync();
-                }
+                    var stringDetails = await response.Content.ReadAsStringAsync();
+                    var json = JObject.Parse(stringDetails);
+                    var j_mAddress = json["marketdetails"]["Address"].ToObject<string>();
+                    var j_mGoogleLink = json["marketdetails"]["GoogleLink"].ToObject<string>();
+                    var j_mProducts = json["marketdetails"]["Products"].ToObject<string>();
+                    var j_mSchedule = json["marketdetails"]["Schedule"].ToObject<string>();
 
+                    marketDetails.Address = j_mAddress;
+                    marketDetails.GoogleLink = j_mGoogleLink;
+                    marketDetails.Products = j_mProducts;
+                    marketDetails.Schedule = j_mSchedule;
+                    context.SaveChanges(); 
+                }
             }
             return marketDetails;
         }
+
+        public async Task<ActionResult> DisplayMarketDetails()
+        {
+            var farmerMarketDetails = await GetMarketDetails();
+            return View(farmerMarketDetails);
+        }
+
 
 
         // GET: Customers/Details/5

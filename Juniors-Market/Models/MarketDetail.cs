@@ -25,6 +25,6 @@ namespace Juniors_Market.Models
 
     public class MarketDetails
     {
-        public List<MarketDetail> marketdetails { get; set; }
+        public MarketDetail marketdetail { get; set; }
     }
 }
