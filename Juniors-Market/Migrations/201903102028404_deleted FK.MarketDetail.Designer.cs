@@ -7,13 +7,13 @@ namespace Juniors_Market.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class initial : IMigrationMetadata
+    public sealed partial class deletedFKMarketDetail : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(deletedFKMarketDetail));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903081803057_initial"; }
+            get { return "201903102028404_deleted FK.MarketDetail"; }
         }
         
         string IMigrationMetadata.Source

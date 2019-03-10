@@ -39,14 +39,13 @@ namespace Juniors_Market.Migrations
                 "dbo.MarketDetails",
                 c => new
                     {
-                        MarketDetailId = c.Int(nullable: false, identity: true),
+                        Address = c.String(nullable: false, maxLength: 128),
                         MarketId = c.String(maxLength: 128),
-                        Address = c.String(),
                         GoogleLink = c.String(),
                         Products = c.String(),
                         Schedule = c.String(),
                     })
-                .PrimaryKey(t => t.MarketDetailId)
+                .PrimaryKey(t => t.Address)
                 .ForeignKey("dbo.MarketSearches", t => t.MarketId)
                 .Index(t => t.MarketId);
             
@@ -54,11 +53,10 @@ namespace Juniors_Market.Migrations
                 "dbo.MarketSearches",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        SearchId = c.Int(nullable: false),
+                        SearchId = c.String(nullable: false, maxLength: 128),
                         Marketname = c.String(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.SearchId);
             
             CreateTable(
                 "dbo.Produces",

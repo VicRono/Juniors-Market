@@ -186,9 +186,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903081803057_initial.cs" />
-    <Compile Include="Migrations\201903081803057_initial.Designer.cs">
-      <DependentUpon>201903081803057_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201903102023413_initial.cs" />
+    <Compile Include="Migrations\201903102023413_initial.Designer.cs">
+      <DependentUpon>201903102023413_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903102028404_deleted FK.MarketDetail.cs" />
+    <Compile Include="Migrations\201903102028404_deleted FK.MarketDetail.Designer.cs">
+      <DependentUpon>201903102028404_deleted FK.MarketDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903102123586_added Id.cs" />
+    <Compile Include="Migrations\201903102123586_added Id.Designer.cs">
+      <DependentUpon>201903102123586_added Id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903102213254_Key.cs" />
+    <Compile Include="Migrations\201903102213254_Key.Designer.cs">
+      <DependentUpon>201903102213254_Key.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -198,6 +210,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MarketDetail.cs" />
+    <Compile Include="Models\MarketDetailViewModel.cs" />
     <Compile Include="Models\MarketSearch.cs" />
     <Compile Include="Models\Produce.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
@@ -295,8 +308,17 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903081803057_initial.resx">
-      <DependentUpon>201903081803057_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903102023413_initial.resx">
+      <DependentUpon>201903102023413_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903102028404_deleted FK.MarketDetail.resx">
+      <DependentUpon>201903102028404_deleted FK.MarketDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903102123586_added Id.resx">
+      <DependentUpon>201903102123586_added Id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903102213254_Key.resx">
+      <DependentUpon>201903102213254_Key.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

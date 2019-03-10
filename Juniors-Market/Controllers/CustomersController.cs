@@ -25,8 +25,8 @@ namespace Juniors_Market.Controllers
         // GET: Customers
         public async Task<ActionResult> Index()
         {
-            var alistofmarkets = await SearchFarmersMarkets();
-            return View(alistofmarkets);
+            var aListOfMarkets = await SearchFarmersMarkets();
+            return View(aListOfMarkets);
         }
 
         public async Task<List<MarketSearch>> SearchFarmersMarkets()
@@ -55,28 +55,42 @@ namespace Juniors_Market.Controllers
                     {
                         MarketSearch marketlist = new MarketSearch();
 
-                        marketlist.Id = json["results"][i]["id"].ToObject<string>();
+                        marketlist.SearchId = json["results"][i]["id"].ToObject<string>();
                         var splitMarketname = json["results"][i]["marketname"].ToObject<string>();
+                        //split distance
 
 
 
                         marketlist.Marketname = splitMarketname;
                         marketResult.Add(marketlist);
+                        context.MarketSearch.Add(marketlist);
                         context.SaveChanges();
+                        ////Create details logic
+                        
+
+
+
                     }
                 }
                 return marketResult;
             }
         }
 
-        public async Task<ActionResult> GetMarketDetails(string id)
+        public async Task<ActionResult> GetMarketDetails(int sId)
         {
-            //pass the id. Get request to api to get market details
-            MarketDetail marketDetails = new MarketDetail();
+            //pass the id.Get request to api to get market details
+            var test = context.MarketSearch.Where(s => s.Id == sId).FirstOrDefault();
+            var exdeatils = context.MarketDetail.Where(i => i.SearchId == test.Id).FirstOrDefault();
+            MarketDetailsViewModel detailsModel = new MarketDetailsViewModel
+            {
+                MarketSearch = new MarketSearch(),
+                MarketDetail = new MarketDetail()
+            };
+            detailsModel.MarketSearch = test;
             using (var client = new HttpClient())
             {
                 var url = @"http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=";
-                url = url + id;
+                url = url + test.SearchId;
                 var response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
@@ -85,18 +99,43 @@ namespace Juniors_Market.Controllers
                     var json = JObject.Parse(stringDetails);
                     var j_mAddress = json["marketdetails"]["Address"].ToObject<string>();
                     var j_mGoogleLink = json["marketdetails"]["GoogleLink"].ToObject<string>();
+                    //split string, save remainder to current db
+
                     var j_mProducts = json["marketdetails"]["Products"].ToObject<string>();
                     var j_mSchedule = json["marketdetails"]["Schedule"].ToObject<string>();
+                    char[] trimSchedule = {'<','>','b', 'r', ';' };
+                    string NewSchedule = j_mSchedule.TrimEnd(trimSchedule);
+                    //trim remainder where colon is
 
+
+                    MarketDetail marketDetails = new MarketDetail();
+                    marketDetails.SearchId = test.Id;
                     marketDetails.Address = j_mAddress;
                     marketDetails.GoogleLink = j_mGoogleLink;
                     marketDetails.Products = j_mProducts;
-                    marketDetails.Schedule = j_mSchedule;
-                    context.SaveChanges(); 
+                    marketDetails.Schedule = NewSchedule;
+                   
+                    context.MarketDetail.Add(marketDetails);
+                    context.SaveChanges();
+
+                    detailsModel.MarketDetail = marketDetails;
                 }
             }
-            return View(marketDetails);
+            return View(detailsModel);
         }
+
+        //public async Task<ActionResult> DisplayMarketDetails()
+        //{
+        //    var displayDetails = await GetMarketDetails();
+
+        //    MarketDetailViewModel detailsModel = new MarketDetailViewModel
+        //    {
+        //        MarketSearch = new MarketSearch(),
+        //        MarketDetail = new MarketDetail()
+        //    };
+        //    return View(detailsModel);
+
+        //}
 
         // GET: Customers/Details/5
         public ActionResult Details(int? id)

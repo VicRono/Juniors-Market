@@ -17,14 +17,8 @@ namespace Juniors_Market.Models
         public string CustomerName { get; set; }
         public Customer Customer { get; set; }
 
-        public int PostId { get; set; }
-        public int VoteSum { get; set; }
-        public int VoteCount { get; set; }
-
-        [ForeignKey("Farmer")]
+        [ForeignKey("MarketSearch")]
         public string MarketName { get; set; }
-        public Farmer Farmer { get; set; }
-
-        public DateTime PostDate { get; set; }
+        public MarketSearch MarketSearch { get; set; }
     }
 }
