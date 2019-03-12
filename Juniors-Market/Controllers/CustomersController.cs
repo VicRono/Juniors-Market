@@ -103,8 +103,9 @@ namespace Juniors_Market.Controllers
 
                     var j_mProducts = json["marketdetails"]["Products"].ToObject<string>();
                     var j_mSchedule = json["marketdetails"]["Schedule"].ToObject<string>();
-                    char[] trimSchedule = {'<','>','b', 'r', ';' };
-                    string NewSchedule = j_mSchedule.TrimEnd(trimSchedule);
+                    var subSchedule = j_mSchedule.Substring(0, j_mSchedule.IndexOf(';'));
+
+
                     //trim remainder where colon is
 
 
@@ -113,7 +114,7 @@ namespace Juniors_Market.Controllers
                     marketDetails.Address = j_mAddress;
                     marketDetails.GoogleLink = j_mGoogleLink;
                     marketDetails.Products = j_mProducts;
-                    marketDetails.Schedule = NewSchedule;
+                    marketDetails.Schedule = subSchedule;
                    
                     context.MarketDetail.Add(marketDetails);
                     context.SaveChanges();
