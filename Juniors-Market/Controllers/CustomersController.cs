@@ -56,12 +56,11 @@ namespace Juniors_Market.Controllers
                         MarketSearch marketlist = new MarketSearch();
 
                         marketlist.SearchId = json["results"][i]["id"].ToObject<string>();
+
                         var splitMarketname = json["results"][i]["marketname"].ToObject<string>();
-                        //split distance
+                        var subMarketName = splitMarketname.Substring(splitMarketname.IndexOf(' ') + 1);
 
-
-
-                        marketlist.Marketname = splitMarketname;
+                        marketlist.Marketname = subMarketName;
                         marketResult.Add(marketlist);
                         context.MarketSearch.Add(marketlist);
                         context.SaveChanges();
@@ -102,6 +101,7 @@ namespace Juniors_Market.Controllers
                     //split string, save remainder to current db
 
                     var j_mProducts = json["marketdetails"]["Products"].ToObject<string>();
+
                     var j_mSchedule = json["marketdetails"]["Schedule"].ToObject<string>();
                     var subSchedule = j_mSchedule.Substring(0, j_mSchedule.IndexOf(';'));
 
