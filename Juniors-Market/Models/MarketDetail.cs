@@ -16,9 +16,13 @@ namespace Juniors_Market.Models
         public string Products { get; set; }
         public string Schedule { get; set; }
 
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
+
         [ForeignKey("MarketSearch")]
         public int SearchId { get; set; }
         public MarketSearch MarketSearch { get; set; }
+
 
     }
 

@@ -54,7 +54,7 @@ namespace Juniors_Market.Controllers
                         MarketSearch marketlist = new MarketSearch();
 
                         marketlist.SearchId = json["results"][i]["id"].ToObject<string>();
-
+                        //take string from json and remove distance and leave marketname
                         var splitMarketname = json["results"][i]["marketname"].ToObject<string>();
                         var subMarketName = splitMarketname.Substring(splitMarketname.IndexOf(' ') + 1);
 
@@ -62,7 +62,6 @@ namespace Juniors_Market.Controllers
                         marketResult.Add(marketlist);
                         context.MarketSearch.Add(marketlist);
                         context.SaveChanges();
-
                     }
                 }
                 return marketResult;
@@ -91,42 +90,47 @@ namespace Juniors_Market.Controllers
                     var stringDetails = await response.Content.ReadAsStringAsync();
                     var json = JObject.Parse(stringDetails);
                     var j_mAddress = json["marketdetails"]["Address"].ToObject<string>();
+
                     var j_mGoogleLink = json["marketdetails"]["GoogleLink"].ToObject<string>();
-                    //split string, save remainder to current db
+                    //get Lat and Long from google link
+                    string getLatAndLong = j_mGoogleLink.Substring(j_mGoogleLink.LastIndexOf('/') + 4);
+                    string[] splitLink = getLatAndLong.Split('(');
+                    if (splitLink.Length > 0)
+                    {
+                        string val = splitLink[0];
+                        int indexPercent = val.IndexOf("%");
+                        string g_Latitude = val.Substring(0, indexPercent);
 
-                    var j_mProducts = json["marketdetails"]["Products"].ToObject<string>();
+                        int lastPercent20 = val.LastIndexOf("%20");
+                        string subLongitude = val.Substring(0, lastPercent20);
 
-                    var j_mSchedule = json["marketdetails"]["Schedule"].ToObject<string>();
-                    var subSchedule = j_mSchedule.Substring(0, j_mSchedule.IndexOf(';'));
+                        int firstPercent20 = subLongitude.IndexOf("-");
+                        string g_Longitude = subLongitude.Substring(firstPercent20);
+                    
 
-                    MarketDetail marketDetails = new MarketDetail();
-                    marketDetails.SearchId = test.Id;
-                    marketDetails.Address = j_mAddress;
-                    marketDetails.GoogleLink = j_mGoogleLink;
-                    marketDetails.Products = j_mProducts;
-                    marketDetails.Schedule = subSchedule;
-                   
-                    context.MarketDetail.Add(marketDetails);
-                    context.SaveChanges();
+                        var j_mProducts = json["marketdetails"]["Products"].ToObject<string>();
 
-                    detailsModel.MarketDetail = marketDetails;
+                        //keep schedule but remove everything right of AND including semicolon
+                        var j_mSchedule = json["marketdetails"]["Schedule"].ToObject<string>();
+                        var subSchedule = j_mSchedule.Substring(0, j_mSchedule.IndexOf(';'));
+
+                        MarketDetail marketDetails = new MarketDetail();
+                        marketDetails.SearchId = test.Id;
+                        marketDetails.Address = j_mAddress;
+                        marketDetails.Latitude = g_Latitude;
+                        marketDetails.Longitude = g_Longitude;
+                        marketDetails.Products = j_mProducts;
+                        marketDetails.Schedule = subSchedule;
+
+                        context.MarketDetail.Add(marketDetails);
+                        context.SaveChanges();
+
+                       detailsModel.MarketDetail = marketDetails;
+                    }
                 }
             }
             return View(detailsModel);
         }
-
-        //public async Task<ActionResult> DisplayMarketDetails()
-        //{
-        //    var displayDetails = await GetMarketDetails();
-
-        //    MarketDetailViewModel detailsModel = new MarketDetailViewModel
-        //    {
-        //        MarketSearch = new MarketSearch(),
-        //        MarketDetail = new MarketDetail()
-        //    };
-        //    return View(detailsModel);
-
-        //}
 
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
