@@ -46,10 +46,8 @@ namespace Juniors_Market.Controllers
                 {
                     var markets = await response.Content.ReadAsStringAsync();
                     var json = JObject.Parse(markets);
-                    var j_marketId = json["results"][0]["id"];
-                    var j_marketName = json["results"][0]["marketname"];
-                    var marketId = j_marketId.ToObject<string>();
-                    var marketName = j_marketName.ToObject<string>();
+                    var j_marketId = json["results"][0]["id"].ToObject<string>();
+                    var j_marketName = json["results"][0]["marketname"].ToObject<string>();
 
                     for (int i = 0; i < json["results"].Count(); i++)
                     {
@@ -64,10 +62,6 @@ namespace Juniors_Market.Controllers
                         marketResult.Add(marketlist);
                         context.MarketSearch.Add(marketlist);
                         context.SaveChanges();
-                        ////Create details logic
-                        
-
-
 
                     }
                 }
@@ -104,10 +98,6 @@ namespace Juniors_Market.Controllers
 
                     var j_mSchedule = json["marketdetails"]["Schedule"].ToObject<string>();
                     var subSchedule = j_mSchedule.Substring(0, j_mSchedule.IndexOf(';'));
-
-
-                    //trim remainder where colon is
-
 
                     MarketDetail marketDetails = new MarketDetail();
                     marketDetails.SearchId = test.Id;
