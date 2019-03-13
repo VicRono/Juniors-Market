@@ -132,6 +132,20 @@ namespace Juniors_Market.Controllers
             }
             return View(detailsModel);
         }
+
+        public ActionResult GetDirections(int id)
+        {
+            var aspUserId = User.Identity.GetUserId();
+            var customer = context.Customer.Where(c => c.AspUserId == aspUserId).SingleOrDefault();
+            var origin = customer.Address + " " + customer.City + " " + customer.State + " " + customer.Zip;
+
+            var market = context.MarketSearch.Where(s => s.Id == id).FirstOrDefault();
+            var exdeatils = context.MarketDetail.Where(i => i.SearchId == market.Id).FirstOrDefault();
+
+            ViewBag.OriginAddress = origin;
+            return RedirectToAction("Index");
+        }
+
         public ActionResult SendEmail(int id)
         {
 
@@ -142,8 +156,8 @@ namespace Juniors_Market.Controllers
         [HttpPost]
         public ActionResult SendEmail(Email email, string to, int id)
         {
-            //try
-            //{
+            try
+            {
                 if (ModelState.IsValid)
                 {
                     var senderEmail = new MailAddress("Nevin.Seibel.Test@gmail.com", "Juniors Markets");
@@ -169,11 +183,11 @@ namespace Juniors_Market.Controllers
                         smtp.Send(mess);
                     }
                 }
-            //}
-            //catch (Exception)
-            //{
-            //    ViewBag.Error = "Error sending e-mail";
-            //}
+        }
+            catch (Exception)
+            {
+                ViewBag.Error = "Error sending e-mail";
+            }
             return RedirectToAction("Index");
         }
         //public ActionResult SaveMarket(int sId)
