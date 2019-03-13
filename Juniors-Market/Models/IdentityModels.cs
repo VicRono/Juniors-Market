@@ -39,6 +39,6 @@ namespace Juniors_Market.Models
         public DbSet<MarketSearch> MarketSearch { get; set; }
         public DbSet<MarketDetail> MarketDetail { get; set; }
 
-       
+        public System.Data.Entity.DbSet<Juniors_Market.Models.Email> Emails { get; set; }
     }
 }

@@ -206,10 +206,15 @@
     <Compile Include="Migrations\201903122206450_addedLatAndLong.Designer.cs">
       <DependentUpon>201903122206450_addedLatAndLong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903130518131_addedEmail.cs" />
+    <Compile Include="Migrations\201903130518131_addedEmail.Designer.cs">
+      <DependentUpon>201903130518131_addedEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Farmer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -291,6 +296,7 @@
     <Content Include="Views\Farmers\Index.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\GetMarketDetails.cshtml" />
+    <Content Include="Views\Customers\SendEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903122206450_addedLatAndLong.resx">
       <DependentUpon>201903122206450_addedLatAndLong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903130518131_addedEmail.resx">
+      <DependentUpon>201903130518131_addedEmail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

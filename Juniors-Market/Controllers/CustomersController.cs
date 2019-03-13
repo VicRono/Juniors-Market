@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -130,6 +131,51 @@ namespace Juniors_Market.Controllers
                 }
             }
             return View(detailsModel);
+        }
+        public ActionResult SendEmail(int sId)
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SendEmail(string reciever, string subject, int sId)
+        {
+            string url = Url.Action("Share", "Customers", new System.Web.Routing.RouteValueDictionary(new { id = sId }), "https", Request.Url.Host);
+            var shareMarketDetails = context.MarketSearch.Find(sId);
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("juniorsmarket92@gmail.com", "Juniors Markets");
+                    var recieverEmail = new MailAddress(reciever, "Reciever");
+                    var password = "Junior92+";
+                    string body = "Hey! Check out this Farmers Market:http://localhost:4824/Customers/GetMarketDetails?sID=" + sId + "";
+
+                    var smtp = new SmtpClient()
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        Credentials = new NetworkCredential(senderEmail.Address, password),
+                        Timeout = 20000
+                    };
+                    using(var mess = new MailMessage(senderEmail, recieverEmail))
+                    {
+                        mess.Subject = subject;
+                        mess.Body = body;
+                        mess.IsBodyHtml = true;
+                        smtp.Send(mess);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Error sending e-mail";
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: Customers/Details/5

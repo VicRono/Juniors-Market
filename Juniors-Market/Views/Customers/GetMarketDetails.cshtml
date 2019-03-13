@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "GetMarketDetails";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>GetMarketDetails</h2>
@@ -46,7 +46,7 @@
 
     <div class="col-md-8">
         <iframe width="450"
-                height="200"
+                height="250"
                 frameborder="0" style="border:0"
                 src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBe_Z-fhGvrQfjvIH5DNtwC4p3EwAwdSKk&q=@Model.MarketDetail.Latitude,@Model.MarketDetail.Longitude" allowfullscreen></iframe>
     </div>
@@ -55,4 +55,5 @@
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Share", "SendEmail", "Customers", new { sId = Model.MarketSearch.Id}, new { @class = "btn btn-primary" })
 </p>
