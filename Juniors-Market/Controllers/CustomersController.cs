@@ -69,21 +69,21 @@ namespace Juniors_Market.Controllers
             }
         }
 
-        public async Task<ActionResult> GetMarketDetails(int sId)
+        public async Task<ActionResult> GetMarketDetails(int id)
         {
             //pass the id.Get request to api to get market details
-            var test = context.MarketSearch.Where(s => s.Id == sId).FirstOrDefault();
-            var exdeatils = context.MarketDetail.Where(i => i.SearchId == test.Id).FirstOrDefault();
+            var searchDetails = context.MarketSearch.Where(s => s.Id == id).FirstOrDefault();
+            var exdeatils = context.MarketDetail.Where(i => i.SearchId == searchDetails.Id).FirstOrDefault();
             MarketDetailsViewModel detailsModel = new MarketDetailsViewModel
             {
                 MarketSearch = new MarketSearch(),
                 MarketDetail = new MarketDetail()
             };
-            detailsModel.MarketSearch = test;
+            detailsModel.MarketSearch = searchDetails;
             using (var client = new HttpClient())
             {
                 var url = @"http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=";
-                url = url + test.SearchId;
+                url = url + searchDetails.SearchId;
                 var response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
@@ -116,7 +116,7 @@ namespace Juniors_Market.Controllers
                         var subSchedule = j_mSchedule.Substring(0, j_mSchedule.IndexOf(';'));
 
                         MarketDetail marketDetails = new MarketDetail();
-                        marketDetails.SearchId = test.Id;
+                        marketDetails.SearchId = searchDetails.Id;
                         marketDetails.Address = j_mAddress;
                         marketDetails.Latitude = g_Latitude;
                         marketDetails.Longitude = g_Longitude;
@@ -132,26 +132,24 @@ namespace Juniors_Market.Controllers
             }
             return View(detailsModel);
         }
-        public ActionResult SendEmail(int sId)
+        public ActionResult SendEmail(int id)
         {
 
             return View();
         }
 
-        [HttpPost]
-        public ActionResult SendEmail(string reciever, string subject, int sId)
-        {
-            string url = Url.Action("Share", "Customers", new System.Web.Routing.RouteValueDictionary(new { id = sId }), "https", Request.Url.Host);
-            var shareMarketDetails = context.MarketSearch.Find(sId);
 
-            try
-            {
+        [HttpPost]
+        public ActionResult SendEmail(Email email, string to, int id)
+        {
+            //try
+            //{
                 if (ModelState.IsValid)
                 {
-                    var senderEmail = new MailAddress("juniorsmarket92@gmail.com", "Juniors Markets");
-                    var recieverEmail = new MailAddress(reciever, "Reciever");
-                    var password = "Junior92+";
-                    string body = "Hey! Check out this Farmers Market:http://localhost:4824/Customers/GetMarketDetails?sID=" + sId + "";
+                    var senderEmail = new MailAddress("Nevin.Seibel.Test@gmail.com", "Juniors Markets");
+                    var recieverEmail = new MailAddress(email.To);
+                    var password = "donthackme1";
+                    string body = "Hey! Check out this Farmers Market:http://localhost:4824/Customers/GetMarketDetails" + id + "";
 
                     var smtp = new SmtpClient()
                     {
@@ -159,24 +157,35 @@ namespace Juniors_Market.Controllers
                         Port = 587,
                         EnableSsl = true,
                         DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
                         Credentials = new NetworkCredential(senderEmail.Address, password),
                         Timeout = 20000
                     };
-                    using(var mess = new MailMessage(senderEmail, recieverEmail))
+                    using (var mess = new MailMessage(senderEmail, recieverEmail))
                     {
-                        mess.Subject = subject;
+                        mess.Subject = email.Subject;
                         mess.Body = body;
                         mess.IsBodyHtml = true;
                         smtp.Send(mess);
                     }
                 }
-            }
-            catch (Exception)
-            {
-                ViewBag.Error = "Error sending e-mail";
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    ViewBag.Error = "Error sending e-mail";
+            //}
             return RedirectToAction("Index");
         }
+        //public ActionResult SaveMarket(int sId)
+        //{
+        //    MarketDetail SaveTrip = context.MarketDetail.Find(sId);
+        //    return View(SaveTrip);
+        //}
+        //public ActionResult SendEmail(mar int sId)
+        //{
+
+        //    return View();
+        //}
 
         // GET: Customers/Details/5
         public ActionResult Details(int? id)

@@ -37,9 +37,9 @@
             
             <td>
 
-                @Html.ActionLink("View Market Details","GetMarketDetails", "Customers", new{sID = item.Id},"")
-                @Html.ActionLink("Archive", "Details", new { sID = item.SearchId })
-                @Html.ActionLink("Review", "Details", new { sID = item.SearchId })
+                @Html.ActionLink("View Market Details","GetMarketDetails", "Customers", new{id = item.Id},"")
+                @Html.ActionLink("Archive", "Details", new { id = item.SearchId })
+                @Html.ActionLink("Review", "Details", new { id = item.SearchId })
             </td>
             
         </tr>

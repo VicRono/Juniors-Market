@@ -10,8 +10,8 @@ namespace Juniors_Market.Models
     {
         [Key]
         public int EmailId { get; set; }
-        public string ToLine { get; set; }
-        public string FromLine { get; set; }
+        public string To { get; set; }
+        public string From { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿@model Juniors_Market.Models.MarketDetail
+﻿@model Juniors_Market.Models.Email
 
 @{
     ViewBag.Title = "SendEmail";
@@ -22,7 +22,7 @@
         <div class="form-horizontal">
 
             <span class="form-control-static"> Receiver: </span>
-            <input class="form-control" type="text" name="receiver" />
+            <input class="form-control" type="text" name="To" />
 
             <br />
 
@@ -31,7 +31,7 @@
 
             <br />
 
-            <input class="btn btn-primary" type="submit" new { id=model.SearchId } value="Send" />
+            <input class="btn btn-primary" type="submit" new { id=model.To } value="Send" />
 
         </div>
     </form>
