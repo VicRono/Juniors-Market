@@ -28,21 +28,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MarketDetail.Latitude)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MarketDetail.Latitude)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MarketDetail.Longitude)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MarketDetail.Longitude)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.MarketDetail.Products)
         </dt>
 
@@ -57,8 +42,16 @@
         <dd>
             @Html.DisplayFor(model => model.MarketDetail.Schedule)
         </dd>
-
     </dl>
+
+    <div class="col-md-8">
+        <iframe width="450"
+                height="200"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBe_Z-fhGvrQfjvIH5DNtwC4p3EwAwdSKk&q=@Model.MarketDetail.Latitude,@Model.MarketDetail.Longitude" allowfullscreen></iframe>
+    </div>
+
+
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index")
