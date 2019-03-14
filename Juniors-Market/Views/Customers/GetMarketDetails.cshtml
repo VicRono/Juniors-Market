@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "GetMarketDetails";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>GetMarketDetails</h2>
@@ -10,51 +10,56 @@
 <div>
     <h4>Market Details</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MarketSearch.Marketname)
-        </dt>
+    <div class="col-md-4">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.MarketSearch.Marketname)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MarketSearch.Marketname)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MarketSearch.Marketname)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MarketDetail.Address)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.MarketDetail.Address)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MarketDetail.Address)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MarketDetail.Address)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MarketDetail.Products)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.MarketDetail.Products)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MarketDetail.Products)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MarketDetail.Products)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MarketDetail.Schedule)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.MarketDetail.Schedule)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MarketDetail.Schedule)
-        </dd>
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.MarketDetail.Schedule)
+            </dd>
+        </dl>
+    </div>
 
-    <div class="col-md-8">
+    <div class="col-md-6">
         <iframe width="450"
                 height="250"
                 frameborder="0" style="border:0"
                 src="https://www.google.com/maps/embed/v1/search?key=AIzaSyClqIXEuixfPAVE6ZoxSCO7zOFtX2rCpwA&q=@Model.MarketDetail.Latitude,@Model.MarketDetail.Longitude" allowfullscreen></iframe>
     </div>
-
-
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-primary" })
-    @Html.ActionLink("Share", "SendEmail", "Customers", new { id = Model.MarketSearch.Id }, new { @class = "btn btn-primary" })
-    @Html.ActionLink("Get Diresction", "GetDirections", "Customers", new { id = Model.MarketSearch.Id }, new { @class = "btn btn-primary" })
-</p>
+
+<div class="col-md-12">
+    <p>
+        @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Share", "SendEmail", "Customers", new { id = Model.MarketSearch.Id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Get Directions", "GetDirections", "Customers", new { id = Model.MarketSearch.Id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Save Farmers Markets", "SaveMarket", "Customers", new { id = Model.MarketSearch.Id }, new { @class = "btn btn-primary" })
+    </p>
+</div>
+

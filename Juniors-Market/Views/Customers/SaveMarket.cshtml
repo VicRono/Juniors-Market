@@ -1,0 +1,61 @@
+﻿@model Juniors_Market.Models.MarketDetailsViewModel
+
+@{
+    ViewBag.Title = "SaveMarket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Are You sure You Want To Save This Market?</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MarketSearch.Marketname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarketSearch.Marketname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarketDetail.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarketDetail.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarketDetail.GoogleLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarketDetail.GoogleLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarketDetail.Products)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarketDetail.Products)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarketDetail.Schedule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarketDetail.Schedule)
+        </dd>
+
+    </dl>
+</div>
+<CENTER>
+    <div class="form-actions no-color">
+        <input type="submit" value="Yes" new { id=model.TripId } class="btn btn-primary" />
+        @Html.ActionLink("No", "Index", " ", new { @class = "btn btn-primary" })
+    </div>
+</CENTER>
+

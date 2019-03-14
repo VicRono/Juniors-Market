@@ -139,11 +139,11 @@ namespace Juniors_Market.Controllers
             var customer = context.Customer.Where(c => c.AspUserId == aspUserId).SingleOrDefault();
             var origin = customer.Address + " " + customer.City + " " + customer.State + " " + customer.Zip;
 
-            var market = context.MarketSearch.Where(s => s.Id == id).FirstOrDefault();
-            var exdeatils = context.MarketDetail.Where(i => i.SearchId == market.Id).FirstOrDefault();
+            var getMarketId = context.MarketSearch.Where(s => s.Id == id).FirstOrDefault();
+            var marketSearchAndDeatils = context.MarketDetail.Where(i => i.SearchId == getMarketId.Id).FirstOrDefault();
 
             ViewBag.OriginAddress = origin;
-            return RedirectToAction("Index");
+            return View(marketSearchAndDeatils);
         }
 
         public ActionResult SendEmail(int id)
@@ -190,16 +190,12 @@ namespace Juniors_Market.Controllers
             }
             return RedirectToAction("Index");
         }
-        //public ActionResult SaveMarket(int sId)
-        //{
-        //    MarketDetail SaveTrip = context.MarketDetail.Find(sId);
-        //    return View(SaveTrip);
-        //}
-        //public ActionResult SendEmail(mar int sId)
-        //{
+        public ActionResult SaveMarket(int id)
+        {
+            MarketDetail SaveTrip = context.MarketDetail.Find(id);
 
-        //    return View();
-        //}
+            return View(SaveTrip);
+        }
 
         // GET: Customers/Details/5
         public ActionResult Details(int? id)

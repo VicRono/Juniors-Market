@@ -9,40 +9,42 @@
 <h2>GetDirections</h2>
 
 <div>
-    <h4>MarketDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Your address:
-        </dt>
+    <div class="col-md-4">
+        <dl class="dl-horizontal">
+            <dt>
+                Your address:
+            </dt>
 
-        <dd>
-            @ViewBag.OriginAddress
-        </dd>
+            <dd>
+                @ViewBag.OriginAddress
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Schedule)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Schedule)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Schedule)
-        </dd>
-
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Schedule)
+            </dd>
+        </dl>
+    </div>
+   
     <div class="col-md-8">
-        <iframe width="500" height="500" frameborder="0" style="border:0"
+        <iframe width="500" height="400" frameborder="0" style="border:0"
                 src="https://www.google.com/maps/embed/v1/directions?origin=@ViewBag.OriginAddress&destination=@Model.Latitude,@Model.Longitude&key=AIzaSyClqIXEuixfPAVE6ZoxSCO7zOFtX2rCpwA" allowfullscreen></iframe>
     </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+
