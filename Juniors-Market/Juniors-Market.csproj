@@ -231,10 +231,17 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Bootstrap-Lumen.css" />
+    <Content Include="Content\Bootstrap-Sandstone.css" />
+    <Content Include="Content\bootstrap-spacelab.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\carrots2.jpg" />
+    <Content Include="Content\Images\farmer-truck.jpg" />
+    <Content Include="Content\Images\farmers-market-.jpg" />
+    <Content Include="Content\Images\tomato.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

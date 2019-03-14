@@ -23,7 +23,7 @@ namespace Juniors_Market
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/Bootstrap-Sandstone.css",
                       "~/Content/site.css"));
         }
     }
