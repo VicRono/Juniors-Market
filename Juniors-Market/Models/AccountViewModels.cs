@@ -64,7 +64,7 @@ namespace Juniors_Market.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "UserRoles")]
+        [Display(Name = "Account Type")]
         public string UserRoles { get; set; }
 
         [Required]
