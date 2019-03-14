@@ -47,8 +47,8 @@
     </div>
 
     <div class="col-md-6">
-        <iframe width="450"
-                height="250"
+        <iframe width="500"
+                height="400"
                 frameborder="0" style="border:0"
                 src="https://www.google.com/maps/embed/v1/search?key=AIzaSyClqIXEuixfPAVE6ZoxSCO7zOFtX2rCpwA&q=@Model.MarketDetail.Latitude,@Model.MarketDetail.Longitude" allowfullscreen></iframe>
     </div>
@@ -56,8 +56,8 @@
 
 <div class="col-md-12">
     <p>
-        @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-primary" })
-        @Html.ActionLink("Share", "SendEmail", "Customers", new { id = Model.MarketSearch.Id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Back to List", "Index"," ", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Share", "SendEmail", "Customers", new { id = Model.MarketSearch.Id }, new { @class = "btn btn-primary btn-Medium" })
         @Html.ActionLink("Get Directions", "GetDirections", "Customers", new { id = Model.MarketSearch.Id }, new { @class = "btn btn-primary" })
         @Html.ActionLink("Save Farmers Markets", "SaveMarket", "Customers", new { id = Model.MarketSearch.Id }, new { @class = "btn btn-primary" })
     </p>

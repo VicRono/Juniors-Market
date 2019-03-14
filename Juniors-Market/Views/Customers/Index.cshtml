@@ -5,15 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>
-    Local Farmers Markets near you:
-</h2>
-<div class="col-md-offset-6">
-    <p>
-        @Html.ActionLink("My Archived Trips", "Index")|
-        @Html.ActionLink("My Account", "Index")
-    </p>
-</div>
+<center>    
+    <h2>
+        Farmers Markets near you:
+    </h2>
+</center>
+
 
 
 <style>
@@ -36,10 +33,7 @@
             </td>
             
             <td>
-
-                @Html.ActionLink("View Market Details","GetMarketDetails", "Customers", new{id = item.Id},"")
-                @Html.ActionLink("Archive", "Details", new { id = item.SearchId })
-                @Html.ActionLink("Review", "Details", new { id = item.SearchId })
+                @Html.ActionLink("View Market Details","GetMarketDetails", "Customers", new{id = item.Id}, new { @class = "btn btn-primary" })
             </td>
             
         </tr>
