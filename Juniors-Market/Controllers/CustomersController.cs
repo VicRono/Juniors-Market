@@ -111,7 +111,7 @@ namespace Juniors_Market.Controllers
 
                         var j_mProducts = json["marketdetails"]["Products"].ToObject<string>();
 
-                        //keep schedule but remove everything right of AND including semicolon
+                        //keep schedule but remove everything to the right of AND including semicolon
                         var j_mSchedule = json["marketdetails"]["Schedule"].ToObject<string>();
                         var subSchedule = j_mSchedule.Substring(0, j_mSchedule.IndexOf(';'));
 
